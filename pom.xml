@@ -3,25 +3,24 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>9</version>
-    </parent>
-
-    <groupId>dev._2lstudios</groupId>
-    <artifactId>flamepaper-parent</artifactId>
+    <!-- Avoid making changes to this file, it has to be deployed manually -->
+    <groupId>com.destroystokyo.paper</groupId>
+    <artifactId>paper-parent</artifactId>
     <version>dev-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>FlamePaper-Parent</name>
-    <description>Parent project for all FlamePaper modules.</description>
-    <url>https://github.com/2lstudios-mc/FlamePaper</url>
+    <name>Paper-Parent</name>
+    <description>Parent project for all Paper modules.</description>
+    <url>https://github.com/PaperMC/Paper</url>
 
     <modules>
-        <module>FlamePaper-Server</module>
-        <module>FlamePaper-API</module>
+        <module>Paper-Server</module>
+        <module>Paper-API</module>
     </modules>
+
+    <build>
+        <defaultGoal>clean install</defaultGoal>
+    </build>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -32,5 +31,24 @@
             <id>md_5-releases</id>
             <url>https://repo.md-5.net/content/repositories/releases/</url>
         </repository>
+        <repository>
+            <id>aikar</id>
+            <url>https://repo.aikar.co/content/groups/aikar/</url>
+        </repository>
+        <repository>
+            <id>destroystokyo-repo</id>
+            <url>https://destroystokyo.com/repo/repository/maven-public/</url>
+        </repository>
     </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>papermc-releases</id>
+            <url>https://papermc.io/repo/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>papermc-snapshots</id>
+            <url>https://papermc.io/repo/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

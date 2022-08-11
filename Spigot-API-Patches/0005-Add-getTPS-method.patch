@@ -1,27 +1,50 @@
-From 8bce4a508162d640c99efa7ddde38c1fe773d49e Mon Sep 17 00:00:00 2001
-From: Zach Brown <Zbob750@live.com>
-Date: Sun, 19 Oct 2014 18:22:18 -0500
+From e3a0f7d9dce7c912c7a5b69d89673d404670c712 Mon Sep 17 00:00:00 2001
+From: Aikar <aikar@aikar.co>
+Date: Mon, 29 Feb 2016 17:24:57 -0600
 Subject: [PATCH] Add getTPS method
 
 
-diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 169008a..26acdda 100644
---- a/src/main/java/org/bukkit/Server.java
-+++ b/src/main/java/org/bukkit/Server.java
-@@ -956,6 +956,13 @@ public interface Server extends PluginMessageRecipient {
-         public void restart() {
-             throw new UnsupportedOperationException("Not supported yet.");
-         }
-+
-+        // PaperSpigot start - Add getTPS method
-+        public double[] getTPS()
-+        {
-+            throw new UnsupportedOperationException( "Not supported yet." );
-+        }
-+        // PaperSpigot end
+diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
+index e1898343..4f094f7b 100644
+--- a/src/main/java/org/bukkit/Bukkit.java
++++ b/src/main/java/org/bukkit/Bukkit.java
+@@ -1125,6 +1125,16 @@ public final class Bukkit {
+         return server.getEntity(uuid);
      }
  
-     Spigot spigot();
++    // Paper start
++    /**
++     * Gets the current server TPS
++     * @return current server TPS (1m, 5m, 15m in Paper-Server)
++     */
++    public static double[] getTPS() {
++        return server.getTPS();
++    }
++    // Paper end
++
+     /**
+      * Get the advancement specified by this key.
+      *
+diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
+index 30b99241..a503bb49 100644
+--- a/src/main/java/org/bukkit/Server.java
++++ b/src/main/java/org/bukkit/Server.java
+@@ -919,6 +919,15 @@ public interface Server extends PluginMessageRecipient {
+      */
+     Entity getEntity(UUID uuid);
+ 
++    // Paper start
++    /**
++     * Gets the current server TPS
++     *
++     * @return current server TPS (1m, 5m, 15m in Paper-Server)
++     */
++    public double[] getTPS();
++    // Paper end
++
+     /**
+      * Get the advancement specified by this key.
+      *
 -- 
-2.5.0
+2.11.0
 

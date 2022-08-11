@@ -1,42 +1,34 @@
-From ca5a9ea7df0a2f0fbe9f584560528dcc1cdb1605 Mon Sep 17 00:00:00 2001
+From 257154fddcfc4106bb12364b1f54b18f09beb062 Mon Sep 17 00:00:00 2001
 From: Jedediah Smith <jedediah@silencegreys.com>
-Date: Fri, 8 Aug 2014 22:51:26 -0500
+Date: Mon, 29 Feb 2016 17:22:34 -0600
 Subject: [PATCH] Player affects spawning API
 
 
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 9508e84..f93dcec 100644
+index 2c7a17df..313dde80 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -1161,6 +1161,28 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
-         public void sendMessage(net.md_5.bungee.api.chat.BaseComponent... components) {
-             throw new UnsupportedOperationException("Not supported yet.");
-         }
-+
-+        /**
-+         * Get whether the player affects mob spawning
-+         *
-+         * @return whether or not the player affects
-+         * mob spawning.
-+         */
-+        public boolean getAffectsSpawning()
-+        {
-+            throw new  UnsupportedOperationException( "Not supported yet." );
-+        }
-+
-+        /**
-+         * Set whether or not the player affects mob spawning
-+         *
-+         * @param affects whether or not the player should affect
-+         * spawning or not.
-+         */
-+        public void setAffectsSpawning(boolean affects)
-+        {
-+            throw new UnsupportedOperationException( "Not supported yet" );
-+        }
-     }
+@@ -1438,6 +1438,20 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
+      */
+     public String getLocale();
  
-     Spigot spigot();
++    /**
++     * Get whether the player can affect mob spawning
++     *
++     * @return if the player can affect mob spawning
++     */
++    public boolean getAffectsSpawning();
++
++    /**
++     * Set whether the player can affect mob spawning
++     *
++     * @param affects Whether the player can affect mob spawning
++     */
++    public void setAffectsSpawning(boolean affects);
++
+     // Spigot start
+     public class Spigot extends Entity.Spigot
+     {
 -- 
-1.9.5.msysgit.1
+2.15.0
 
