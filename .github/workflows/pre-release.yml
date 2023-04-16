@@ -29,10 +29,6 @@ jobs:
       - name: Build
         run: ./build.sh
 
-      - name: Copy Paperclip jar
-        run: |
-          cp -v "./paperclip/build/libs/paperclip-1.8.8-R0.1-SNAPSHOT.jar" "./FlamePaper.jar"
-          
       - name: Auto release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
@@ -40,4 +36,4 @@ jobs:
           automatic_release_tag: ${{ github.run_number }}
           prerelease: true
           files: |
-            *.jar
+            FlamePaper-Server/target/FlamePaper.jar
