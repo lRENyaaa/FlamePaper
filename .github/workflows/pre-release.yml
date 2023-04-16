@@ -1,34 +1,27 @@
-name: Pre release
+name: Build
 
 on:
   push:
     branches:
       - ver/1.8.8
-  workflow_dispatch:
 
 jobs:
   build:
-    name: Gradle-Build
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      
-      # Setup JDK
-      - name: Setup Java JDK
+      - uses: actions/checkout@v3
+
+      - name: Setup JDK 8
         uses: actions/setup-java@v3
         with:
           java-version: 8
-          distribution: 'temurin'
-          cache: 'gradle'
-        
-      # Build
-      - name: Make gradlew executable
-        run: chmod +x ./build.sh
-      - name: Build with Gradle
+          distribution: temurin
+      - name: Build
         run: ./build.sh
 
-      # Auto release
+      - name: Copy Paperclip jar
+        run: |
+          cp -v "./paperclip/build/libs/paperclip-1.8.8-R0.1-SNAPSHOT.jar" "./FlamePaper-$GITHUB_RUN_NUMBER.jar"
       - name: Auto release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
@@ -36,5 +29,4 @@ jobs:
           automatic_release_tag: latest
           prerelease: true
           files: |
-            bin/*.jar
-            LICENSE
+            *.jar
