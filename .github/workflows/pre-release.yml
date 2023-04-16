@@ -16,14 +16,23 @@ jobs:
         with:
           java-version: 8
           distribution: temurin
+          
       - name: Make build.sh executable
         run: chmod +x ./*.sh
+        
+      - name: Set Git identity
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git config --global init.defaultBranch master
+          
       - name: Build
         run: ./build.sh
 
       - name: Copy Paperclip jar
         run: |
-          cp -v "./paperclip/build/libs/paperclip-1.8.8-R0.1-SNAPSHOT.jar" "./FlamePaper-$GITHUB_RUN_NUMBER.jar"
+          cp -v "./paperclip/build/libs/paperclip-1.8.8-R0.1-SNAPSHOT.jar" "./FlamePaper.jar"
+          
       - name: Auto release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
