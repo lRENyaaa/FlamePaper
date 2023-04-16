@@ -19,7 +19,7 @@ function cleanupPatches {
                 diffs=$(echo "$diffs" | head -n -2)
             fi
         fi
-        
+
 
         if [ "x$diffs" == "x" ] ; then
             git reset HEAD $patch >/dev/null
