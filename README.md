@@ -5,8 +5,7 @@ FlamePaper is a [Paper](https://github.com/PaperMC/Paper/tree/ver/1.8.8) modific
 ## How To (Server Admins)
 
 Download a copy of FlamePaper.  
-[Download for free](https://github.com/MagicTeaMC/FlamePaper-CI/tags)  
-[Download for paid](https://www.mc-market.org/resources/19660/)  
+[Download](https://www.mc-market.org/resources/19660/)  
 
 Run the FlamePaper jar directly from your server.
 
