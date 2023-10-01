@@ -1,8 +1,22 @@
-#!/bin/bash
+
 
 PS1="$"
 basedir=`pwd`
 echo "Rebuilding Forked projects.... "
+
+pause() {
+    if [ "$1" != "" ]; then
+        echo -n -e "$1"
+    fi
+    SAVEDSTTY=`stty -g`
+    stty -echo
+    stty raw
+    dd if=/dev/tty bs=1 count=1 2> /dev/null
+    stty -raw
+    stty echo
+    echo ""
+    stty $SAVEDSTTY
+}
 
 function applyPatch {
     what=$1
@@ -21,7 +35,9 @@ function applyPatch {
     git remote add -f upstream ../$what >/dev/null 2>&1
     git checkout master >/dev/null 2>&1
     git fetch upstream >/dev/null 2>&1
+    pause
     git reset --hard upstream/upstream
+    rm -f ./Spigot-API/.git/index.lock
     echo "  Applying patches to $target..."
     git am --abort >/dev/null 2>&1
     git am --3way --ignore-whitespace "$basedir/${what}-Patches/"*.patch

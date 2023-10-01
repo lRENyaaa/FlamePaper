@@ -1,4 +1,4 @@
-#!/bin/bash
+
 
 PS1="$"
 basedir=`pwd`
